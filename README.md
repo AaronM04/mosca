@@ -408,10 +408,11 @@ var authorizePublish = function(client, topic, payload, callback) {
   callback(null, client.user == topic.split('/')[1]);
 }
 
+var silent = true;  // Should the client remain connected if not authorized? Default is false.
 // In this case the client authorized as alice can subscribe to /users/alice taking
 // the username from the topic and verifing it is the same of the authorized user
 var authorizeSubscribe = function(client, topic, callback) {
-  callback(null, client.user == topic.split('/')[1]);
+  callback(null, client.user == topic.split('/')[1], silent);
 }
 ```
 
